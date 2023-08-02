@@ -31,6 +31,7 @@
 
     </video>
     <h2 id="actionText">initialising</h1>
+    <h2 id="posi"></h2>
 
     <div id="messageBox" class="sendmessage">
         <h1 style="text-align: center;font-family: 'Open Sans', sans-serif;">Jump to start</h1>
@@ -81,6 +82,7 @@
     }
 
     async function poseHandler(pose) {
+        posiAmt = document.getElementById('posi')
         l_hip = pose.keypoints[11];
         r_hip = pose.keypoints[12];
 
@@ -107,11 +109,13 @@
 
         if (pos < h * 0.2) {
             toggleAction('crouch')
-        } else if (pos < h * 0.6) {
+        } else if (pos < h * 0.4) {
             toggleAction('idle')
         } else {
             toggleAction('jump')
         }
+
+        posiAmt.textContent = pos
     }
 
     var imageElement = document.getElementById('webcam');
